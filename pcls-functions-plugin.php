@@ -61,9 +61,10 @@ add_action( 'wp_head', 'jk_sticky_sidebar_scripts' );
 //auto updates
 
 require 'plugin-update-checker/plugin-update-checker.php';
-$myUpdateChecker = PucFactory::buildUpdateChecker(
-    //'http://parkcountylibrary.org/pcls-wordpress-plugin/metadata.json',
-    'https://github.com/sethjohnson1/pcls/',
-    __FILE__
+$className = PucFactory::getLatestClassVersion('PucGitHubChecker');
+$myUpdateChecker = new $className(
+    'https://github.com/sethjohnson1/pcls',
+    __FILE__,
+    'master'
 );
 ?>

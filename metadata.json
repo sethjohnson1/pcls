@@ -1,0 +1,9 @@
+{
+    "name" : "PCLS Site plugin",
+    "version" : "1.5",
+    "author" : "Seth Johnson",
+    "download_url" : "http://parkcountylibrary.org/pcls-wordpress-plugin/pcls-functions-plugin.zip",
+    "sections" : {
+        "description" : "PCLS custom functions and CSS"
+    }
+}
