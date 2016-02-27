@@ -2,7 +2,7 @@
 /*
 Plugin Name: PCLS Site plugin
 Description: Seth's specific functions and CSS overrides.
-Version: 1
+Version: 1.1
 Author: Seth Johnson
 */
 
