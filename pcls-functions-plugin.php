@@ -2,7 +2,7 @@
 /*
 Plugin Name: PCLS Site plugin
 Description: Seth's specific functions and CSS overrides.
-Version: 1.1
+Version: 1.5
 Author: Seth Johnson
 */
 
@@ -58,4 +58,12 @@ wp_enqueue_script('jk_sticky', '//rawgit.com/leafo/sticky-kit/v1.1.1/jquery.stic
 }
 add_action( 'wp_head', 'jk_sticky_sidebar_scripts' );
 
+//auto updates
+
+require 'plugin-update-checker/plugin-update-checker.php';
+$myUpdateChecker = PucFactory::buildUpdateChecker(
+    //'http://parkcountylibrary.org/pcls-wordpress-plugin/metadata.json',
+    'https://github.com/sethjohnson1/pcls/',
+    __FILE__
+);
 ?>
