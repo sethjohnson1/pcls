@@ -1,11 +1,12 @@
 <?php
-//Change the version number and push to GitHub to all updates, has worked in testing so far although the author said it was still experimental
 /*
 Plugin Name: PCLS Site plugin
 Description: Seth's specific functions and CSS overrides, versioned thru GitHub.
 Version: 1.7
 Author: Seth Johnson
 */
+
+//Change the version number and push to GitHub to all updates, has worked in testing so far although the author said it was still experimental
 
 
 //assign this as a variable
