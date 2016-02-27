@@ -1,8 +1,9 @@
 <?php
+//Change the version number and push to GitHub to all updates, has worked in testing so far although the author said it was still experimental
 /*
 Plugin Name: PCLS Site plugin
-Description: Seth's specific functions and CSS overrides.
-Version: 1.6
+Description: Seth's specific functions and CSS overrides, versioned thru GitHub.
+Version: 1.7
 Author: Seth Johnson
 */
 
@@ -11,9 +12,8 @@ Author: Seth Johnson
 $pcls_full_dir=get_site_url().'/wp-content/plugins/pcls-functions-plugin/';
 
 
-//add_action( 'genesis_before_content', 'wyld_search' );
 add_action( 'genesis_footer', 'test_2' );
-add_action('genesis_before_entry','pcls_show_featured_image');
+add_action('genesis_before_entry','pcls_show_test_message');
 
 function wyld_search() {
     //the first one uses a before_header hook
@@ -25,7 +25,7 @@ function test_2() {
    // echo '<h1 style="color:white">here</h1>';
 }
 
-function pcls_show_featured_image() {
+function pcls_show_test_message() {
    echo '<h1 style="color:red">this is a test website</h1>';
 }
 
@@ -43,7 +43,7 @@ function sp_footer_creds_filter( $creds ) {
 	return $creds;
 }
 
-//this one is a WYLD search widget and likely will replace the other
+//WYLD search widget
 require('wyld_search_widget.php');
 
 //renew widget
@@ -53,12 +53,13 @@ require('pcls_renew_widget.php');
 require('pcls_newsletter_widget.php');
 
 // Enqueue sticky sidebar scripts
+// currently only used on Resource page, if removed you must remove the text as well
 function jk_sticky_sidebar_scripts() {
 wp_enqueue_script('jk_sticky', '//rawgit.com/leafo/sticky-kit/v1.1.1/jquery.sticky-kit.min.js', array('jquery'), '', true);
 }
 add_action( 'wp_head', 'jk_sticky_sidebar_scripts' );
 
-//auto updates
+//auto updates via GitHub, it works well so far!
 
 require 'plugin-update-checker/plugin-update-checker.php';
 $className = PucFactory::getLatestClassVersion('PucGitHubChecker');
