@@ -6,7 +6,6 @@ Version: 1.7
 Author: Seth Johnson
 */
 
-//Change the version number and push to GitHub to all updates, has worked in testing so far although the author said it was still experimental
 
 
 //assign this as a variable
@@ -60,8 +59,8 @@ wp_enqueue_script('jk_sticky', '//rawgit.com/leafo/sticky-kit/v1.1.1/jquery.stic
 }
 add_action( 'wp_head', 'jk_sticky_sidebar_scripts' );
 
-//auto updates via GitHub, it works well so far!
-
+//auto updates via GitHub, never worked right and was just a test. You must go download the required plug-in-update-checker if you want to use it
+/*
 require 'plugin-update-checker/plugin-update-checker.php';
 $className = PucFactory::getLatestClassVersion('PucGitHubChecker');
 $myUpdateChecker = new $className(
@@ -69,4 +68,5 @@ $myUpdateChecker = new $className(
     __FILE__,
     'master'
 );
+*/
 ?>
