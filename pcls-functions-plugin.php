@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: PCLS Site plugin
-Description: Seth's specific functions and CSS overrides, versioned thru GitHub.
+Description: Seth's specific functions and CSS overrides.
 Version: 1.7
 Author: Seth Johnson
 */
@@ -15,11 +15,6 @@ $pcls_full_dir=get_site_url().'/wp-content/plugins/pcls-functions-plugin/';
 add_action( 'genesis_footer', 'test_2' );
 add_action('genesis_before_entry','pcls_show_test_message');
 
-function wyld_search() {
-    //the first one uses a before_header hook
-	require($GLOBALS['pcls_dir'].'wyld_search.php');
-	
-}
 
 function test_2() {
    // echo '<h1 style="color:white">here</h1>';
