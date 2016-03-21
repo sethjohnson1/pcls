@@ -21,7 +21,7 @@ function test_2() {
 }
 
 function pcls_show_test_message() {
-   echo '<h1 style="color:red">this is a test website</h1>';
+   //echo '<h1 style="color:red">this is a test website</h1>';
 }
 
 
