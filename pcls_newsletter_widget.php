@@ -119,7 +119,7 @@ class PCLS_Newsletter_Widget extends WP_Widget {
 			echo '<div style="background-color:white; padding:15px; border: 4px solid blue; margin: 4px; width:87%;"><h4><strong>'.$msg.'</strong></h4></div>';
 		} 
 		else {
-			echo __("Bots are not allowed to submit comments. If you are not a bot then please enable JavaScript in browser.");
+			echo __("<noscript>You must enable JavaScript to bypass our Spam detection service.</noscript>");
 			//return null;
 		}
 		
