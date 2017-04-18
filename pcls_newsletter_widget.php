@@ -30,6 +30,18 @@ $pcls_newsletter_array=array(
 	'admin'=>'')
 );
 
+/* add the Google recaptcha script  */
+
+function frontend_recaptcha_script() {
+	wp_register_script("recaptcha", "https://www.google.com/recaptcha/api.js");
+	wp_enqueue_script("recaptcha");
+	
+	$plugin_url = plugin_dir_url(__FILE__);
+	//wp_enqueue_style("no-captcha-recaptcha", $plugin_url ."style.css");
+}
+add_action("wp_enqueue_scripts", "frontend_recaptcha_script");
+
+
 add_action( 'widgets_init', 'pclsnewsletter_load_widgets' );
 /** Register Widget **/
 function pclsnewsletter_load_widgets() {
@@ -76,26 +88,44 @@ class PCLS_Newsletter_Widget extends WP_Widget {
 		
 		<?php } 
 
-		if(!empty($_POST['email'])) {
-		//send the newsletters
-		$msg='<span style="color:red">Please choose at least one</span>';
-		foreach ($letters as $k=>$news){
-			if (isset($_POST[$k])){
-				$to = $news['admin'];
-				$subject = 'Signup for: '.$news['title'];
-				$message = 'signup Email: '.$_POST['email'];
-				$headers = 'From: NO-REPLY@parkcountylibrary.org' . "\r\n";
-	 
-				if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-					mail($to, $subject, $message, $headers);
-					$msg= '<span style="color:green">Your request has been sent!</span>';
-				}else{
-					$msg= "Please enter your email";
+		//if(!empty($_POST['email'])) {
+		if(!empty($_POST['g-recaptcha-response'])) {
+			$recaptcha_secret = get_option('captcha_secret_key');
+			$response = wp_remote_get("https://www.google.com/recaptcha/api/siteverify?secret=". $recaptcha_secret ."&response=". $_POST['g-recaptcha-response']);
+			$response = json_decode($response["body"], true);
+			if (true == $response["success"]) {
+					//send the newsletters
+				$msg='<span style="color:red">Please choose at least one</span>';
+				foreach ($letters as $k=>$news){
+					if (isset($_POST[$k])){
+						$to = $news['admin'];
+						$subject = 'Signup for: '.$news['title'];
+						$message = 'signup Email: '.$_POST['email'];
+						$headers = 'From: NO-REPLY@parkcountylibrary.org' . "\r\n";
+			 
+						if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+							mail($to, $subject, $message, $headers);
+							$msg= '<span style="color:green">Your request has been sent!</span>';
+						}else{
+							$msg= "Please enter your email";
+						}
+					}
 				}
+				
+			} else {
+				$msg="Bots are not allowed to submit comments.";
+				return null;
 			}
+			echo '<div style="background-color:white; padding:15px; border: 4px solid blue; margin: 4px; width:87%;"><h4><strong>'.$msg.'</strong></h4></div>';
+		} 
+		else {
+			echo __("Bots are not allowed to submit comments. If you are not a bot then please enable JavaScript in browser.");
+			//return null;
 		}
-		echo '<div style="background-color:white; padding:15px; border: 4px solid blue; margin: 4px; width:87%;"><h4><strong>'.$msg.'</strong></h4></div>';
-		}
+		
+		
+		
+		
 		
 		?>
 		
@@ -124,6 +154,8 @@ class PCLS_Newsletter_Widget extends WP_Widget {
 		 }?>
 		
 		<br />
+		<div class="g-recaptcha" style="transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;" data-sitekey="<?php echo get_option('captcha_site_key'); ?>"></div>
+	<!-- input name="submit" type="submit" value="Submit Comment" -->
 		<input class="" id="" type="submit" value="Submit"  style="font-size:1.2em;" />
 		
 </form>

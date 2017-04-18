@@ -47,6 +47,9 @@ require('pcls_renew_widget.php');
 //newsletter widget
 require('pcls_newsletter_widget.php');
 
+//recaptcha
+require('pcls_recaptcha_admin.php');
+
 // Enqueue sticky sidebar scripts
 // currently only used on Resource page, if removed you must remove the text as well
 function jk_sticky_sidebar_scripts() {
