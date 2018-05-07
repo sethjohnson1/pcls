@@ -11,14 +11,16 @@ function pclsrenew_load_widgets() {
 
 /** Define the Widget as an extension of WP_Widget **/
 class PCLS_Renew_Widget extends WP_Widget {
-	function PCLS_Renew_Widget() {
-		/* Widget settings. */
+	public function __construct()
+    {
+        /* Widget settings. */
 		$widget_ops = array( 'classname' => 'widget_pclsrenew', 'description' => 'Renew widget for PCLS' );
 		/* Widget control settings. */
 		$control_ops = array( 'id_base' => 'pclsrenew-widget' );
 		/* Create the widget. */
 		parent::__construct('pclsrenew-widget', __('PCLS Renew Widget'), $widget_ops, $control_ops);
-	}
+    }
+
 	function widget( $args, $instance ) {
 		//the title is the name of the library - perhaps a bit misleading
 		//$title = apply_filters( 'widget_title', $instance['title'] );

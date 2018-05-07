@@ -50,15 +50,20 @@ function pclsnewsletter_load_widgets() {
 
 /** Define the Widget as an extension of WP_Widget **/
 class PCLS_Newsletter_Widget extends WP_Widget {
-	function PCLS_Newsletter_Widget() {
-		/* Widget settings. */
+	public function __construct()
+    {
+        /* Widget settings. */
 		$widget_ops = array( 'classname' => 'widget_pclsnewsletter', 'description' => 'PCLS Newsletter sign-up' );
 		/* Widget control settings. */
 		$control_ops = array( 'id_base' => 'pclsnewsletter-widget' );
 		/* Create the widget. */
 		parent::__construct('pclsnewsletter-widget', __('PCLS Newsletter Widget'), $widget_ops, $control_ops);
+    }
+
+	/*function PCLS_Newsletter_Widget() {
 		
-	}
+		
+	}*/
 	function widget( $args, $instance ) {
 		//the title is the name of the library - perhaps a bit misleading
 		$title = apply_filters( 'widget_title', $instance['title'] );

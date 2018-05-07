@@ -11,14 +11,16 @@ function wyldsearch_load_widgets() {
 
 /** Define the Widget as an extension of WP_Widget **/
 class WYLD_Widget extends WP_Widget {
-	function WYLD_Widget() {
-		/* Widget settings. */
+	public function __construct()
+    {
+        /* Widget settings. */
 		$widget_ops = array( 'classname' => 'widget_pclswyld', 'description' => 'WYLD Search for PCLS' );
 		/* Widget control settings. */
 		$control_ops = array( 'id_base' => 'pclswyld-widget' );
 		/* Create the widget. */
 		parent::__construct('pclswyld-widget', __('WYLD Search Widget'), $widget_ops, $control_ops);
-	}
+    }
+
 	function widget( $args, $instance ) {
 		//the title is the name of the library - perhaps a bit misleading
 		$title = apply_filters( 'widget_title', $instance['title'] );
