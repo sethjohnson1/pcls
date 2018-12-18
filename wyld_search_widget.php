@@ -74,7 +74,7 @@ class WYLD_Widget extends WP_Widget {
 				
 				//console.log(pcls_wyld_library_option);
 				//finally, do the redirect
-				window.location='http://wyld.sdp.sirsi.net/client/'+pcls_wyld_library_option+'/search/results?qu='+encodeURIComponent(document.getElementById('pcls_wyld_search_value-<?php echo $pcls_widget_id?>').value)+'&te=&lm='+pcls_wyld_end_url;
+				window.location='https://wyld.ent.sirsi.net/client/en_US/'+pcls_wyld_library_option+'/search/results?qu='+encodeURIComponent(document.getElementById('pcls_wyld_search_value-<?php echo $pcls_widget_id?>').value)+'&te=&lm='+pcls_wyld_end_url;
 				
 				
 			}
